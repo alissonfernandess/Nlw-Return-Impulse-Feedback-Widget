@@ -1,6 +1,7 @@
 import html2canvas from "html2canvas";
 import { Camera, Trash } from "phosphor-react";
 import { useState } from "react";
+import { Loading } from "../Loading";
 
 interface FeedbackTypeStepProps {
 	onScreenshotTaken: (screenshot: string | null) => void;
@@ -23,7 +24,7 @@ export function ScreenshotButton({
 		setIsTakingScreenshot(false);
 	}
 
-	if (screenshot){
+	if (screenshot) {
 		return (
 			<button
 				type="button"
@@ -35,7 +36,7 @@ export function ScreenshotButton({
 				}}
 				onClick={() => onScreenshotTaken(null)}
 			>
-				<Trash weight="fill"/>
+				<Trash weight="fill" />
 			</button>
 		)
 	}
@@ -46,7 +47,7 @@ export function ScreenshotButton({
 			className="p-2 bg-zinc-800 rounded-md border-transparent hover:bg-zinc-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-zinc-900 focus:ring-brand-500 transition-colors"
 			onClick={handleTakeScrrenshot}
 		>
-			<Camera className="w-6 h-6 text-zinc-100" />
+			{isTakingScreenshot ? <Loading /> : <Camera className="w-6 h-6 text-zinc-100" />}
 		</button>
 	)
 }
